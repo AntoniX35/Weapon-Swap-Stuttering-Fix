@@ -4,7 +4,7 @@ namespace Fix
 {
 	void Install()
 	{
-		REL::Relocation<std::uintptr_t> address{ REL::Offset(0x02091B8C) };
+		REL::Relocation<std::uintptr_t> address{ REL::Offset(0x02091B5C) };
 
 		REL::safe_write(address.address(), REL::NOP6, sizeof(REL::NOP6));
 
@@ -22,7 +22,7 @@ DLLEXPORT constinit auto SFSEPlugin_Version = []() noexcept {
 	//data.UsesAddressLibrary(true);
 	data.HasNoStructUse(true);
 	//data.IsLayoutDependent(true);
-	data.CompatibleVersions({ SFSE::RUNTIME_SF_1_7_23 });
+	data.CompatibleVersions({ SFSE::RUNTIME_SF_1_7_29 });
 
 	return data;
 }();
