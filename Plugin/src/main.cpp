@@ -1,16 +1,28 @@
 #include "DKUtil/Hook.hpp"
 
+namespace Fix
+{
+	void Install()
+	{
+		REL::Relocation<std::uintptr_t> address{ REL::Offset(0x02091B8C) };
+
+		REL::safe_write(address.address(), REL::NOP6, sizeof(REL::NOP6));
+
+		INFO("Installed");
+	}
+}
+
 DLLEXPORT constinit auto SFSEPlugin_Version = []() noexcept {
 	SFSE::PluginVersionData data{};
 
 	data.PluginVersion(Plugin::Version);
 	data.PluginName(Plugin::NAME);
 	data.AuthorName(Plugin::AUTHOR);
-	data.UsesSigScanning(true);
+	data.UsesSigScanning(false);
 	//data.UsesAddressLibrary(true);
 	data.HasNoStructUse(true);
 	//data.IsLayoutDependent(true);
-	data.CompatibleVersions({ SFSE::RUNTIME_LATEST });
+	data.CompatibleVersions({ SFSE::RUNTIME_SF_1_7_23 });
 
 	return data;
 }();
@@ -22,6 +34,7 @@ namespace
 		switch (a_msg->type) {
 		case SFSE::MessagingInterface::kPostLoad:
 			{
+				Fix::Install();
 				break;
 			}
 		default:
