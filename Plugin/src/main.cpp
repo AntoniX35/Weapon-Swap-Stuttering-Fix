@@ -4,11 +4,18 @@ namespace Fix
 {
 	void Install()
 	{
-		REL::Relocation<std::uintptr_t> address{ REL::Offset(0x02091B5C) };
-
-		REL::safe_write(address.address(), REL::NOP6, sizeof(REL::NOP6));
-
-		INFO("Installed");
+		auto patchAddress = reinterpret_cast<uintptr_t>(DKUtil::Hook::search_pattern<"48 83 C1 10 E9 93 FF FF FF">());
+		if (patchAddress)
+		{
+			patchAddress += 4;
+			INFO("Found the patch address: {:x}", patchAddress);
+			REL::safe_write(patchAddress, REL::NOP6, sizeof(REL::NOP6));
+			INFO("Installed");
+		}
+		else
+		{
+			ERROR("Couldn't find the patch address");
+		}
 	}
 }
 
@@ -18,11 +25,14 @@ DLLEXPORT constinit auto SFSEPlugin_Version = []() noexcept {
 	data.PluginVersion(Plugin::Version);
 	data.PluginName(Plugin::NAME);
 	data.AuthorName(Plugin::AUTHOR);
-	data.UsesSigScanning(false);
+	data.UsesSigScanning(true);
 	//data.UsesAddressLibrary(true);
 	data.HasNoStructUse(true);
 	//data.IsLayoutDependent(true);
-	data.CompatibleVersions({ SFSE::RUNTIME_SF_1_7_29 });
+	data.CompatibleVersions({
+		SFSE::RUNTIME_SF_1_7_29,
+		SFSE::RUNTIME_LATEST
+	});
 
 	return data;
 }();
@@ -51,9 +61,10 @@ void SFSEPlugin_Preload(SFSE::LoadInterface* a_sfse);
 DLLEXPORT bool SFSEAPI SFSEPlugin_Load(const SFSE::LoadInterface* a_sfse)
 {
 #ifndef NDEBUG
-	while (!IsDebuggerPresent()) {
-		Sleep(100);
-	}
+	MessageBoxA(NULL, "Loaded. You can attach the debugger now or continue", "WeaponSwapStutteringFix SFSE Plugin", NULL);
+	// while (!IsDebuggerPresent()) {
+	// 	Sleep(100);
+	// }
 #endif
 
 	SFSE::Init(a_sfse, false);
