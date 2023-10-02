@@ -1,9 +1,9 @@
 {
     "$schema": "https://raw.githubusercontent.com/microsoft/vcpkg-tool/main/docs/vcpkg.schema.json",
-    "name": "weapon-swap-stuttering-fix",
+    "name": "weaponswapstutteringfix",
     "version-string": "1.0.0",
     "description": "sfse plugin for starfield",
-    "homepage": "https://github.com/AntoniX35/Weapon-Swap-Stuttering-Fix",
+    "homepage": "https://github.com/AntoniX35/WeaponSwapStutteringFix",
     "dependencies": [
         "spdlog",
         "nlohmann-json",
