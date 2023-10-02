@@ -1,4 +1,4 @@
-# 📑 Weapon Swap Stuttering Fix
+# 📑 Weapon Swap Stuttering Fix TEST
 Fixed stuttering when changing weapons https://www.nexusmods.com/starfield/mods/2830
 
 ## 📖 License
