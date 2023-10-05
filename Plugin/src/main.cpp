@@ -42,37 +42,6 @@ namespace WeaponSwapStutteringFix
 				target.address(),
 				trampoline.allocate(code));
 		}
-		// {				
-			// REL::Relocation<std::uintptr_t> target{ REL::ID(144857), -0x28C }; 
-			// struct Patch2_Code : Xbyak::CodeGenerator
-				// {
-					// Patch2_Code(std::uintptr_t a_address, std::uintptr_t a_call_address)
-						// {
-							// Xbyak::Label retnLabel;
-							// Xbyak::Label callLabel;
-
-							// mov(dl, 1);
-							// call(ptr[rip + callLabel]);
-	
-							// jmp(ptr[rip + retnLabel]);
-							
-							// L(callLabel);
-							// dq(a_call_address);
-
-							// L(retnLabel);
-							// dq(a_address + 0x5);
-						
-						// }
-				// };
-			// REL::Relocation<std::uintptr_t> callTarget{ REL::ID(151202) };
-			// Patch2_Code code(target.address(), callTarget.address());
-			// code.ready();
-
-			// auto& trampoline = SFSE::GetTrampoline();
-			// trampoline.write_branch<5>(
-				// target.address(),
-				// trampoline.allocate(code));
-		// }
 
 		INFO("Installed");
 	}
