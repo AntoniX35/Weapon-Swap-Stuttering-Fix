@@ -130,7 +130,7 @@ DLLEXPORT constinit auto SFSEPlugin_Version = []() noexcept {
 	// REL::ID usage instead of REL::Offset
 	data.UsesAddressLibrary(true);
 	// Version independent signature scanning
-	data.UsesSigScanning(true);
+	//data.UsesSigScanning(true);
 
 	// Uses version specific structure definitions
 	data.IsLayoutDependent(true);

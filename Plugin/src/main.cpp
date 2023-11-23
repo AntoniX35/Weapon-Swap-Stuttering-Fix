@@ -1,8 +1,3 @@
-/* 
- * https://github.com/Starfield-Reverse-Engineering/CommonLibSF
- * This plugin template links against CommonLibSF
- */
-
 #include "DKUtil/Hook.hpp"
 ptrdiff_t offset;
 namespace WeaponSwapStutteringFix
@@ -63,11 +58,6 @@ namespace
 	}
 }
 
-/**
-// for preload plugins
-void SFSEPlugin_Preload(SFSE::LoadInterface* a_sfse);
-/**/
-
 DLLEXPORT bool SFSEAPI SFSEPlugin_Load(const SFSE::LoadInterface* a_sfse)
 {
 #ifndef NDEBUG
@@ -87,7 +77,7 @@ DLLEXPORT bool SFSEAPI SFSEPlugin_Load(const SFSE::LoadInterface* a_sfse)
 	// do stuff
 	// this allocates 1024 bytes for development builds, you can
 	// adjust the value accordingly with the log result for release builds
-	SFSE::AllocTrampoline(1 << 7);
+	SFSE::AllocTrampoline(1 << 10);
 
 	SFSE::GetMessagingInterface()->RegisterListener(MessageCallback);
 
