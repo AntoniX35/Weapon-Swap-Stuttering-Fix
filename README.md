@@ -1,4 +1,4 @@
-# 📑 Weapon Swap Stuttering Fix TEST
+# 📑 Weapon Swap Stuttering Fix
 SFSE plugin for Starfield. Fixed stuttering when changing weapons 
 https://www.nexusmods.com/starfield/mods/2830
 
